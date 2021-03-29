@@ -17,6 +17,12 @@ $sub_menu_active = function($route) {
             <span class="link-title">Clients</span>
         </a>
     </li>
+    <li class="nav-item {{ $menu_active('projects') }}">
+        <a href="{{ has_route('projects') }}" class="nav-link">
+            <i class="link-icon" data-feather="folder"></i>
+            <span class="link-title">Projects</span>
+        </a>
+    </li>
     @foreach($fitur_program as $item)
         @if(count($item['children']) == 0)
             <li class="nav-item {{ $menu_active($item->nama) }}">

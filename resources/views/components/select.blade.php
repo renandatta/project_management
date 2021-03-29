@@ -4,7 +4,7 @@
     class="form-control {{ $class }}"
     {{ $attributes }}
 >
-    @if($default == '1')
+    @if($caption != '')
         <option value="">{{ $caption }}</option>
     @endif
     @foreach($options as $key => $option)

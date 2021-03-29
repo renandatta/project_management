@@ -6,15 +6,14 @@ use Illuminate\View\Component;
 
 class Select extends Component
 {
-    public $class, $prefix, $name, $caption, $value, $options, $default;
+    public $class, $prefix, $name, $caption, $value, $options;
     public function __construct(
         $class = null,
         $prefix = null,
         $name = null,
         $caption = '-Pilih-',
         $value = '',
-        $options = [],
-        $default = ''
+        $options = []
     )
     {
         $this->class = $class;
@@ -23,7 +22,6 @@ class Select extends Component
         $this->caption = $caption;
         $this->value = $value;
         $this->options = $options;
-        $this->default = $default;
     }
 
     public function render()

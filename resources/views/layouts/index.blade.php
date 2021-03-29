@@ -65,6 +65,10 @@
 <script src="{{ asset('assets/plugins/feather-icons/feather.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/select2/select2.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/dropify/js/dropify.min.js') }}"></script>
+<script src="{{ asset('assets/js/autoNumeric.js') }}"></script>
 <script src="{{ asset('assets/js/template.js') }}"></script>
 <script>
     let init_form_element = () => {
@@ -73,9 +77,9 @@
             format: 'dd-mm-yyyy',
             autoclose: true
         });
-        $(".summernote").summernote({
-            height: 300,
-        });
+        // $(".summernote").summernote({
+        //     height: 300,
+        // });
         $('.dropify').dropify();
         $('.autonumeric').autoNumeric({
             mDec: '0',

@@ -48,4 +48,12 @@ class ClientRepository {
         return $client;
     }
 
+    public function dropdown()
+    {
+        $result = array();
+        $clients = $this->client->latest()->get();
+        foreach ($clients as $client) $result[$client->id] = $client->name;
+        return $result;
+    }
+
 }

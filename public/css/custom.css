@@ -1,0 +1,16 @@
+.btn, .fc .fc-button, .swal2-modal .swal2-actions button, .wizard>.actions .disabled a, .wizard>.actions a, .wizard>.actions a:hover {
+    padding: .5rem 1rem;
+}
+
+.vertical-middle {
+    vertical-align: middle!important;
+}
+
+.table td {
+    white-space: normal;
+    vertical-align: top;
+}
+
+.table th {
+    vertical-align: bottom;
+}

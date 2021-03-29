@@ -18,9 +18,12 @@
     <link href="{{ asset('assets/plugins/dropify/css/dropify.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/plugins/bootstrap-datepicker/bootstrap-datepicker.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('assets/plugins/font-awesome/css/font-awesome.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/@mdi/css/materialdesignicons.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.css') }}" rel="stylesheet" />
     @stack('plugins')
 
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" />
+    <link href="{{ asset('css/custom.css') }}" rel="stylesheet" />
 
     @stack('styles')
 </head>
@@ -48,15 +51,7 @@
             </a>
         </nav>
         <div class="page-content">
-            <div class="row">
-                <div class="col-12 stretch-card">
-                    <div class="card">
-                        <div class="card-body">
-                            @yield('content')
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @yield('content')
         </div>
         <footer class="footer d-flex flex-column flex-md-row align-items-center justify-content-between">
             <p class="text-muted text-center text-md-left">
@@ -69,6 +64,7 @@
 <script src="{{ asset('js/app.js') }}"></script>
 <script src="{{ asset('assets/plugins/feather-icons/feather.min.js') }}"></script>
 <script src="{{ asset('assets/plugins/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+<script src="{{ asset('assets/plugins/sweetalert2/sweetalert2.min.js') }}"></script>
 <script src="{{ asset('assets/js/template.js') }}"></script>
 <script>
     let init_form_element = () => {
@@ -96,7 +92,7 @@
     $("[data-hide]").on("click", function(){
         $(this).parent().hide();
     });
-    let getFormData = ($form) => {
+    let get_form_data = ($form) => {
         let unindexed_array = $form.serializeArray();
         let indexed_array = {};
         $.map(unindexed_array, function(n, i){
@@ -104,7 +100,7 @@
         });
         return indexed_array;
     }
-    let displayErrors = (target_id, errors) => {
+    let display_error = (target_id, errors) => {
         let $target = $('#' + target_id);
         let $content = $('#' + target_id + '_content');
         $content.html('');

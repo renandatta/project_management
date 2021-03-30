@@ -14,3 +14,7 @@
 .table th {
     vertical-align: bottom;
 }
+
+.dropify-wrapper .dropify-message span.file-icon:before {
+    content: none;
+}

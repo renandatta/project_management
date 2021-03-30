@@ -11,6 +11,12 @@ $sub_menu_active = function($route) {
 };
 @endphp
 <ul class="nav">
+    <li class="nav-item {{ $menu_active('profiles') }}">
+        <a href="{{ has_route('profiles') }}" class="nav-link">
+            <i class="link-icon" data-feather="book"></i>
+            <span class="link-title">Profiles</span>
+        </a>
+    </li>
     <li class="nav-item {{ $menu_active('clients') }}">
         <a href="{{ has_route('clients') }}" class="nav-link">
             <i class="link-icon" data-feather="user"></i>

@@ -102,10 +102,11 @@ class InvoiceRepository extends Repository {
 
     public function auto_number()
     {
-        $last = $this->invoice->orderBy('no_invoice', 'desc')
+        $last = $this->invoice
             ->where('date', 'like', date('Y-m').'-%')
+            ->orderBy('no_invoice', 'desc')
             ->first();
-        $last_no = empty($last) ? 1 : intval(last(explode('-', $last->no_invoice)));
+        $last_no = empty($last) ? 1 : intval(last(explode('/', $last->no_invoice)))+1;
         for ($i = 1; strlen($last_no) <= 4; $i++) $last_no = '0' . $last_no;
         return "INV/" . date('Ym') . '/' . $last_no;
     }

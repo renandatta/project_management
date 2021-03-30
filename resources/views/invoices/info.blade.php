@@ -78,6 +78,9 @@
                         </table>
                         <button class="btn btn-light mt-3 mr-2" type="button" onclick="new_item_detail()">Add New Item</button>
                         <button class="btn btn-primary mt-3" type="submit">Save Invoice</button>
+                        @if(!empty($invoice))
+                            <a href="{{ route('invoices.print', $invoice->id) }}" class="btn btn-success float-right mt-3">Print</a>
+                        @endif
                     </div>
                 </div>
             </form>
@@ -87,8 +90,8 @@
 
 @push('scripts')
     <script>
-        init_form_element()
-        let _token = '{{ csrf_token() }}', details_count = parseInt('{{ $invoice->details->count() ?? 0 }}');
+        init_form_element();
+        let _token = '{{ csrf_token() }}', details_count = parseInt('{{ !empty($invoice) ? $invoice->details->count() : 0 }}');
         let $item_invoice_detail = $('#item_invoice_detail');
 
         new_item_detail = (id = '', index = '') => {
@@ -110,11 +113,12 @@
             if (details_count < 1) new_item_detail();
         }
 
-        @foreach($invoice->details as $key => $detail)
-            new_item_detail({{ $detail->id }}, {{ $key }});
-        @endforeach
 
-        @if(empty($invoice))
+        @if(!empty($invoice))
+            @foreach($invoice->details as $key => $detail)
+            new_item_detail({{ $detail->id }}, {{ $key }});
+            @endforeach
+        @else
             new_item_detail();
         @endif
     </script>

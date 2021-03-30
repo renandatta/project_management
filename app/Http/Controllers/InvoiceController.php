@@ -46,6 +46,12 @@ class InvoiceController extends Controller
         return redirect()->route('invoices');
     }
 
+    public function print($id)
+    {
+        $invoice = $this->invoice->find($id);
+        return view('invoices.print', compact('invoice'));
+    }
+
     public function details_info(Request $request)
     {
         $index = $request->input('index') ?? '1';

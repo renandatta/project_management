@@ -53,7 +53,8 @@ Route::prefix('invoices')->group(function () {
     Route::post('search', [InvoiceController::class, 'search'])->name('invoices.search');
     Route::get('info/{id?}', [InvoiceController::class, 'info'])->name('invoices.info');
     Route::post('save', [InvoiceController::class, 'save'])->name('invoices.save');
-    Route::post('delete', [InvoiceController::class, 'delete'])->name('invoices.delete');
+
+    Route::get('print/{id}', [InvoiceController::class, 'print'])->name('invoices.print');
 
     Route::prefix('details')->group(function () {
         Route::post('info', [InvoiceController::class, 'details_info'])->name('invoices.details.info');

@@ -12,7 +12,7 @@
     <td class="p-0">
         <x-input :prefix="$index" name="price[]" class="border-0 text-right autonumeric" :value="$detail->price ?? ''" />
     </td>
-    <td class="font-weight-bold py-2 vertical-middle" id="{{ $index }}total"></td>
+    <td class="font-weight-bold py-2 vertical-middle text-right" id="{{ $index }}total"></td>
     <td class="p-0 text-center vertical-middle">
         <button class="btn btn-danger py-1 px-2" type="button" onclick="delete_row({{ $index }}, '{{ !empty($detail) ? $detail->id : '' }}')">
             <i class="mdi mdi-close text-white"></i>
@@ -21,9 +21,7 @@
 </tr>
 
 <script>
-    @if(empty($detail))
-        init_form_element();
-    @endif
+    init_form_element();
 
     $('#{{ $index }}qty, #{{ $index }}price').change(() => {
         let qty = $('#{{ $index }}qty').val(),

@@ -6,7 +6,6 @@ use App\Http\Requests\ClientSaveRequest;
 use App\Http\Requests\DeleteRequest;
 use App\Repositories\ClientRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class ClientController extends Controller
 {
@@ -18,7 +17,7 @@ class ClientController extends Controller
 
     public function index()
     {
-        Session::put('menu_active', 'clients');
+        session(['menu_active' => 'clients']);
         return view('clients.index');
     }
 

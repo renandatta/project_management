@@ -81,13 +81,17 @@
         //     height: 300,
         // });
         $('.dropify').dropify();
-        $('.autonumeric').autoNumeric({
-            mDec: '0',
-            vMax:'9999999999999999999999999',
-            vMin: '-99999999999999999'
-        }).attr('data-a-sep','.').attr('data-a-dec',',');
+        $('.autonumeric')
+            .attr('data-a-sep', '.')
+            .attr('data-a-dec',',')
+            .autoNumeric({
+                mDec: '0',
+                vMax:'9999999999999999999999999',
+                vMin: '-99999999999999999'
+            });
         $('.autonumeric-decimal')
-            .attr('data-a-sep','.').attr('data-a-dec',',')
+            .attr('data-a-sep','.')
+            .attr('data-a-dec',',')
             .autoNumeric({
                 mDec: '2',
                 vMax:'999'
@@ -112,6 +116,21 @@
             $content.append('<li>'+ value +'</li>');
         });
         $target.show();
+    }
+    function add_commas(nStr) {
+        nStr += '';
+        let x = nStr.split('.');
+        let x1 = x[0];
+        let x2 = x.length > 1 ? '.' + x[1] : '';
+        let rgx = /(\d+)(\d{3})/;
+        while (rgx.test(x1)) {
+            x1 = x1.replace(rgx, '$1' + '.' + '$2');
+        }
+        return x1 + x2;
+    }
+    function remove_commas(nStr) {
+        nStr = nStr.replace(/\./g,'');
+        return nStr;
     }
 </script>
 @stack('scripts')

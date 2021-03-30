@@ -7,8 +7,7 @@ function has_route($route)
 
 function menu_active($route)
 {
-    $menu_active = \Illuminate\Support\Facades\Session::get('menu_active') ?? '';
-    return $menu_active == $route ? 'active' : '';
+    return session('menu_active', '') == $route ? 'active' : '';
 }
 
 function format_number($number, $currency = 'IDR')

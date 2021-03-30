@@ -53,4 +53,12 @@ class ProjectRepository extends Repository {
         return $project;
     }
 
+    public function dropdown()
+    {
+        $result = array();
+        $projects = $this->project->latest()->get();
+        foreach ($projects as $project) $result[$project->id] = $project->name;
+        return $result;
+    }
+
 }

@@ -18,7 +18,7 @@ class InvoiceDetail extends Model
         'price'
     ];
 
-    public function getTotalAttributes()
+    public function getTotalAttribute()
     {
         return $this->qty * $this->price;
     }

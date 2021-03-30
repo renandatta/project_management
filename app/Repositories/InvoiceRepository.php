@@ -17,7 +17,7 @@ class InvoiceRepository extends Repository {
 
     public function search(Request $request)
     {
-        $invoice = $this->invoice->with(['project']);
+        $invoice = $this->invoice->with(['project.client', 'profile']);
 
         $project_id = $request->input('project_id') ?? '';
         if ($project_id != '')
@@ -49,6 +49,18 @@ class InvoiceRepository extends Repository {
             $invoice = $this->invoice->find($id);
             if (empty($invoice)) return $invoice;
             $invoice->update($request->all());
+        }
+        foreach ($request->input('item') as $key => $item) {
+            if ($item != '') {
+                $this->save_detail(new Request([
+                    'invoice_id' => $invoice->id,
+                    'item' => $item,
+                    'qty' => $request->input('qty')[$key],
+                    'unit' => $request->input('unit')[$key],
+                    'price' => $request->input('price')[$key],
+                    'id' => $request->input('detail_id')[$key],
+                ]));
+            }
         }
         return $invoice;
     }
@@ -86,6 +98,16 @@ class InvoiceRepository extends Repository {
         if (empty($detail)) return $detail;
         $detail->delete();
         return $detail;
+    }
+
+    public function auto_number()
+    {
+        $last = $this->invoice->orderBy('no_invoice', 'desc')
+            ->where('date', 'like', date('Y-m').'-%')
+            ->first();
+        $last_no = empty($last) ? 1 : intval(last(explode('-', $last->no_invoice)));
+        for ($i = 1; strlen($last_no) <= 4; $i++) $last_no = '0' . $last_no;
+        return "INV/" . date('Ym') . '/' . $last_no;
     }
 
 }

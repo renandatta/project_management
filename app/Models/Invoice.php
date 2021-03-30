@@ -10,7 +10,8 @@ class Invoice extends Model
         'project_id',
         'no_invoice',
         'date',
-        'date_due'
+        'date_due',
+        'profile_id'
     ];
 
     public function project()
@@ -19,9 +20,14 @@ class Invoice extends Model
             ->with(['client']);
     }
 
+    public function profile()
+    {
+        return $this->belongsTo(Profile::class);
+    }
+
     public function details()
     {
-        return $this->hasMany(InvoiceDetail::class, 'invoice_id', 'id');
+        return $this->hasMany(InvoiceDetail::class, 'invoice_id', 'id')->oldest();
     }
 
     public function scopeExpired($query)

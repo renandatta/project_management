@@ -7,7 +7,6 @@ use App\Http\Requests\DeleteRequest;
 use App\Repositories\ClientRepository;
 use App\Repositories\ProjectRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class ProjectController extends Controller
 {
@@ -20,7 +19,7 @@ class ProjectController extends Controller
 
     public function index()
     {
-        Session::put('menu_active', 'projects');
+        session(['menu_active' => 'projects']);
         return view('projects.index');
     }
 

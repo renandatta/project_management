@@ -6,7 +6,6 @@ use App\Http\Requests\ProfileSaveRequest;
 use App\Http\Requests\DeleteRequest;
 use App\Repositories\ProfileRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Session;
 
 class ProfileController extends Controller
 {
@@ -18,7 +17,7 @@ class ProfileController extends Controller
 
     public function index()
     {
-        Session::put('menu_active', 'profiles');
+        session(['menu_active' => 'profiles']);
         return view('profiles.index');
     }
 

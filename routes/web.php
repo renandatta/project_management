@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
 use Illuminate\Support\Facades\File;
@@ -45,4 +46,17 @@ Route::prefix('projects')->group(function () {
     Route::post('info', [ProjectController::class, 'info'])->name('projects.info');
     Route::post('save', [ProjectController::class, 'save'])->name('projects.save');
     Route::post('delete', [ProjectController::class, 'delete'])->name('projects.delete');
+});
+
+Route::prefix('invoices')->group(function () {
+    Route::get('/', [InvoiceController::class, 'index'])->name('invoices');
+    Route::post('search', [InvoiceController::class, 'search'])->name('invoices.search');
+    Route::get('info/{id?}', [InvoiceController::class, 'info'])->name('invoices.info');
+    Route::post('save', [InvoiceController::class, 'save'])->name('invoices.save');
+    Route::post('delete', [InvoiceController::class, 'delete'])->name('invoices.delete');
+
+    Route::prefix('details')->group(function () {
+        Route::post('info', [InvoiceController::class, 'details_info'])->name('invoices.details.info');
+        Route::post('delete', [InvoiceController::class, 'details_delete'])->name('invoices.details.delete');
+    });
 });

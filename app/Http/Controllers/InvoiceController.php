@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DeleteRequest;
 use App\Http\Requests\InvoiceSaveRequest;
 use App\Repositories\InvoiceRepository;
 use App\Repositories\ProfileRepository;
@@ -62,5 +63,10 @@ class InvoiceController extends Controller
     public function details_delete(Request $request)
     {
         return $this->invoice->delete_detail($request->input('id'));
+    }
+
+    public function delete(DeleteRequest $request)
+    {
+        return $this->invoice->delete($request->input('id'));
     }
 }

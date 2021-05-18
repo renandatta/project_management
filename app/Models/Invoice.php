@@ -34,4 +34,9 @@ class Invoice extends Model
     {
         return $query->where('date_due', '<', date('Y-m-d'));
     }
+
+    public function receipts()
+    {
+        return $this->hasMany(Receipt::class);
+    }
 }

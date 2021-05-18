@@ -57,7 +57,7 @@ class ProjectRepository extends Repository {
     {
         $result = array();
         $projects = $this->project->latest()->get();
-        foreach ($projects as $project) $result[$project->id] = $project->name;
+        foreach ($projects as $project) $result[$project->id] = $project->client->name . '-' . $project->name;
         return $result;
     }
 

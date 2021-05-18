@@ -7,7 +7,8 @@
         <th>Client</th>
         <th>Project</th>
         <th class="text-right">Total</th>
-        <th>Actions</th>
+        <th class="text-right">Paid</th>
+        <th class="text-center">Actions</th>
     </tr>
     </thead>
     <tbody>
@@ -20,9 +21,16 @@
                 <td>{{ $invoice->project->client->name }}</td>
                 <td>{{ $invoice->project->name }}</td>
                 <td class="text-right">{{ format_number($invoice->details->sum('total')) }}</td>
-                <td class="py-1 vertical-middle text-center">
+                <td class="text-right">{{ format_number($invoice->receipts->sum('total')) }}</td>
+                <td class="py-1 vertical-middle text-center text-nowrap">
                     <a class="btn btn-info py-1 px-2" href="{{ route('invoices.info', $invoice->id) }}">
                         <i class="mdi mdi-arrow-right text-white"></i>
+                    </a>
+                    <a target="_blank" class="btn btn-success py-1 px-2" href="{{ route('invoices.print', $invoice->id) }}">
+                        <i class="mdi mdi-printer text-white"></i>
+                    </a>
+                    <a class="btn btn-primary py-1 px-2" href="{{ route('receipts.info', ['invoice_id' => $invoice->id]) }}">
+                        <i class="mdi mdi-share text-white"></i>
                     </a>
                 </td>
             </tr>

@@ -21,7 +21,8 @@ class CreateInvoiceDetailsTable extends Migration
             $table->string('unit');
             $table->double('price')->default(0);
             $table->timestamps();
-            $table->foreign('invoice_id')->references('id')->on('invoices');
+            $table->foreign('invoice_id')->references('id')->on('invoices')
+                ->onDelete('cascade');
         });
     }
 

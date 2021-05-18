@@ -79,7 +79,7 @@
                         <button class="btn btn-light mt-3 mr-2" type="button" onclick="new_item_detail()">Add New Item</button>
                         <button class="btn btn-primary mt-3" type="submit">Save Invoice</button>
                         @if(!empty($invoice))
-                            <a href="{{ route('invoices.print', $invoice->id) }}" class="btn btn-success float-right mt-3">Print</a>
+                            <button class="btn btn-danger float-right mt-3" type="button" onclick="delete_invoice({{ $invoice->id }})">Delete</button>
                         @endif
                     </div>
                 </div>
@@ -113,13 +113,37 @@
             if (details_count < 1) new_item_detail();
         }
 
+        delete_invoice = (id) => {
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+                if (result.value === true) {
+                    let data = {_token: '{{ csrf_token() }}', id};
+                    $.post("{{ route('invoices.delete') }}", data, () => {
+                        window.location.href = "{{ route('invoices') }}";
+                    }).fail((xhr) => {
+                        let error = JSON.parse(xhr.responseText);
+                        if (error.errors) {
+                            display_error('alert_receipt', error.errors);
+                        } else {
+                            console.log(xhr.responseText);
+                        }
+                    });
+                }
+            })
+        }
+
 
         @if(!empty($invoice))
-            @foreach($invoice->details as $key => $detail)
-            new_item_detail({{ $detail->id }}, {{ $key }});
-            @endforeach
+        @foreach($invoice->details as $key => $detail)
+        new_item_detail({{ $detail->id }}, {{ $key }});
+        @endforeach
         @else
-            new_item_detail();
+        new_item_detail();
         @endif
     </script>
 @endpush

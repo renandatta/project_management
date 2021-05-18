@@ -23,7 +23,7 @@
                     <button class="btn btn-primary" type="submit">Save</button>
                     <button class="btn btn-light ml-2" type="button" onclick="init_client()">Cancel</button>
                     @if(!empty($client))
-                        <button class="btn btn-danger float-right" type="button" onclick="delete_client()">Delete</button>
+                        <button class="btn btn-danger float-right" type="button" onclick="delete_client({{ $client->id }})">Delete</button>
                     @endif
                 </div>
             </div>
@@ -56,7 +56,7 @@
         });
     });
 
-    delete_client = () => {
+    delete_client = (id) => {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",

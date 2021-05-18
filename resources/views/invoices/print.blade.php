@@ -1,7 +1,7 @@
 @extends('layouts.print')
 
 @section('title')
-    Invoices -
+    Invoice {{ $invoice->project->name }}
 @endsection
 
 @push('styles')
@@ -99,6 +99,8 @@
         <div class="row row-footer mx-default">
             <div class="col-10"><h6 class="mt-footer text-right">TOTAL</h6></div>
             <div class="col-2"><h6 class="mt-footer text-right">{{ format_number($invoice->details->sum('total')) }}</h6></div>
+{{--            <div class="col-10"><h6 class="mt-footer text-right">DP (50%)</h6></div>--}}
+{{--            <div class="col-2"><h6 class="mt-footer text-right">{{ format_number($invoice->details->sum('total') / 2) }}</h6></div>--}}
         </div>
     </div>
     <div class="mx-default mt-5">

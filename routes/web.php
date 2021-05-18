@@ -4,6 +4,7 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProjectController;
+use App\Http\Controllers\ReceiptController;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Route;
@@ -53,6 +54,7 @@ Route::prefix('invoices')->group(function () {
     Route::post('search', [InvoiceController::class, 'search'])->name('invoices.search');
     Route::get('info/{id?}', [InvoiceController::class, 'info'])->name('invoices.info');
     Route::post('save', [InvoiceController::class, 'save'])->name('invoices.save');
+    Route::post('delete', [InvoiceController::class, 'delete'])->name('invoices.delete');
 
     Route::get('print/{id}', [InvoiceController::class, 'print'])->name('invoices.print');
 
@@ -60,4 +62,13 @@ Route::prefix('invoices')->group(function () {
         Route::post('info', [InvoiceController::class, 'details_info'])->name('invoices.details.info');
         Route::post('delete', [InvoiceController::class, 'details_delete'])->name('invoices.details.delete');
     });
+});
+
+Route::prefix('receipts')->group(function () {
+    Route::get('/', [ReceiptController::class, 'index'])->name('receipts');
+    Route::get('info/{id?}', [ReceiptController::class, 'info'])->name('receipts.info');
+    Route::get('print/{id}', [ReceiptController::class, 'print'])->name('receipts.print');
+    Route::post('search', [ReceiptController::class, 'search'])->name('receipts.search');
+    Route::post('save', [ReceiptController::class, 'save'])->name('receipts.save');
+    Route::post('delete', [ReceiptController::class, 'delete'])->name('receipts.delete');
 });

@@ -35,4 +35,10 @@ $sub_menu_active = function($route) {
             <span class="link-title">Invoices</span>
         </a>
     </li>
+    <li class="nav-item {{ $menu_active('receipts') }}">
+        <a href="{{ has_route('receipts') }}" class="nav-link">
+            <i class="link-icon" data-feather="file-text"></i>
+            <span class="link-title">Recepts</span>
+        </a>
+    </li>
 </ul>

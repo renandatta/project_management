@@ -29,7 +29,7 @@
                     <button class="btn btn-primary" type="submit">Save</button>
                     <button class="btn btn-light ml-2" type="button" onclick="init_project()">Cancel</button>
                     @if(!empty($project))
-                        <button class="btn btn-danger float-right" type="button" onclick="delete_project()">Delete</button>
+                        <button class="btn btn-danger float-right" type="button" onclick="delete_project({{ $project->id }})">Delete</button>
                     @endif
                 </div>
             </div>
@@ -64,7 +64,7 @@
         });
     });
 
-    delete_project = () => {
+    delete_project = (id) => {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",

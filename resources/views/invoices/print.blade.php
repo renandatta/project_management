@@ -1,7 +1,7 @@
 @extends('layouts.print')
 
 @section('title')
-    Invoice {{ $invoice->project->name }}
+    Invoice {{ $invoice->details[0]->item }}
 @endsection
 
 @push('styles')
@@ -80,12 +80,13 @@
             <div class="col-2"><h6 class="mt-header text-right">Total</h6></div>
         </div>
     </div>
+    @php($no = 1)
     @foreach($invoice->details as $key => $detail)
         <div class="row mx-default">
             <div class="col-6">
                 <div class="row mt-header">
                     <div class="col-1">
-                        <h6>{{ $key+1 }}</h6>
+                        <h6>{{ $no++ }}</h6>
                     </div>
                     <div class="col-11"><h6>{{ $detail->item }}</h6></div>
                 </div>
@@ -95,12 +96,23 @@
             <div class="col-2"><h6 class="mt-header text-right">{{ format_number($detail->total) }}</h6></div>
         </div>
     @endforeach
+    @foreach($invoice->receipts as $key => $receipt)
+        <div class="row mx-default">
+            <div class="col-10">
+                <div class="row mt-header">
+                    <div class="col-1">
+                        <h6>{{ $no++ }}</h6>
+                    </div>
+                    <div class="col-11"><h6>{{ ordinal(($key+1)) }} Payment</h6></div>
+                </div>
+            </div>
+            <div class="col-2"><h6 class="mt-header text-right">-{{ format_number($receipt->total) }}</h6></div>
+        </div>
+    @endforeach
     <div class="w-100 bg-main mt-4">
         <div class="row row-footer mx-default">
             <div class="col-10"><h6 class="mt-footer text-right">TOTAL</h6></div>
-            <div class="col-2"><h6 class="mt-footer text-right">{{ format_number($invoice->details->sum('total')) }}</h6></div>
-{{--            <div class="col-10"><h6 class="mt-footer text-right">DP (50%)</h6></div>--}}
-{{--            <div class="col-2"><h6 class="mt-footer text-right">{{ format_number($invoice->details->sum('total') / 2) }}</h6></div>--}}
+            <div class="col-2"><h6 class="mt-footer text-right">{{ format_number($invoice->details->sum('total') - $invoice->receipts->sum('total') ) }}</h6></div>
         </div>
     </div>
     <div class="mx-default mt-5">

@@ -110,7 +110,7 @@
             });
         });
 
-        delete_receipt = () => {
+        delete_receipt = (id) => {
             Swal.fire({
                 title: 'Are you sure?',
                 text: "You won't be able to revert this!",
@@ -121,7 +121,8 @@
                 if (result.value === true) {
                     let data = {_token: '{{ csrf_token() }}', id};
                     $.post("{{ route('receipts.delete') }}", data, () => {
-                        init_receipt();
+
+                        window.location.href = "{{ route('receipts') }}";
                     }).fail((xhr) => {
                         let error = JSON.parse(xhr.responseText);
                         if (error.errors) {

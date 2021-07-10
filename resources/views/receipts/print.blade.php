@@ -99,10 +99,10 @@
         <div class="row row-footer mx-default">
             <div class="col-10"><h6 class="mt-footer text-right">Invoice Total</h6></div>
             <div class="col-2"><h6 class="mt-footer text-right">{{ format_number($invoice->details->sum('total')) }}</h6></div>
-            <div class="col-10"><h6 class="mt-footer text-right">Paid</h6></div>
-            <div class="col-2"><h6 class="mt-footer text-right">{{ format_number($receipt->total) }}</h6></div>
-            <div class="col-10"><h6 class="mt-footer text-right">Insufficient Payment</h6></div>
-            <div class="col-2"><h6 class="mt-footer text-right">{{ format_number($invoice->details->sum('total')-$receipt->total) }}</h6></div>
+            <div class="col-10"><h4 class="mt-footer text-right">Paid</h4></div>
+            <div class="col-2"><h4 class="mt-footer text-right">{{ format_number($receipt->total) }}</h4></div>
+{{--            <div class="col-10"><h6 class="mt-footer text-right">Insufficient Payment</h6></div>--}}
+{{--            <div class="col-2"><h6 class="mt-footer text-right">{{ format_number($invoice->details->sum('total')-$receipt->total) }}</h6></div>--}}
         </div>
     </div>
     <div class="mx-default mt-5">
@@ -110,7 +110,10 @@
             <div class="col-4 text-center">
                 Received by
                 <br>
-                <img src="{{ asset('tanda_tangan.png') }}" alt="" class="img-fluid" style="height: 100px;">
+{{--                <img src="{{ asset('tanda_tangan.png') }}" alt="" class="img-fluid" style="height: 100px;">--}}
+                <br>
+                <br>
+                <br>
                 <br>
                 ( Gerza Renandatta R. Dayana )
             </div>

@@ -10,6 +10,14 @@ function menu_active($route)
     return session('menu_active', '') == $route ? 'active' : '';
 }
 
+function ordinal($number) {
+    $ends = array('th','st','nd','rd','th','th','th','th','th','th');
+    if ((($number % 100) >= 11) && (($number%100) <= 13))
+        return $number. 'th';
+    else
+        return $number. $ends[$number % 10];
+}
+
 function format_number($number, $currency = 'IDR')
 {
     if ($number == "") return "0";

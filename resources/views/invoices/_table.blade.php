@@ -38,4 +38,4 @@
     </tbody>
 </table>
 
-{{ $invoices->links('vendor.pagination.custom', ['function' => 'search_siswa']) }}
+{{ $invoices->links('vendor.pagination.custom', ['function' => 'search_invoices']) }}

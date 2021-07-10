@@ -28,8 +28,13 @@
             paginate = 10;
         let $invoices_table = $('#invoices_table');
 
-        search_invoices = () => {
-            $.post("{{ route('invoices.search') }}", {_token, paginate}, (result) => {
+        let selected_page = 1;
+        search_invoices = (page = 1) => {
+            if (page.toString() === '+1') selected_page++;
+            else if (page.toString() === '-1') selected_page--;
+            else selected_page = page;
+
+            $.post("{{ route('invoices.search') }}?page=" + selected_page, {_token, paginate}, (result) => {
                 $invoices_table.html(result);
             }).fail((xhr) => {
                 $invoices_table.html(xhr.responseText);

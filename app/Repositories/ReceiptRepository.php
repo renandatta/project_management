@@ -48,7 +48,7 @@ class ReceiptRepository extends Repository {
     public function delete($id)
     {
         $receipt = $this->receipt->find($id);
-        if (empty($receipt)) return $receipt;
+        if (!empty($receipt)) return $receipt;
         $receipt->delete();
         return $receipt;
     }

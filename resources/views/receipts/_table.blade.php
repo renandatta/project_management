@@ -33,4 +33,4 @@
     </tbody>
 </table>
 
-{{ $receipts->links('vendor.pagination.custom', ['function' => 'search_siswa']) }}
+{{ $receipts->links('vendor.pagination.custom', ['function' => 'search_receipts']) }}

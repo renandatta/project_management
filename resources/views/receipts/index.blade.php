@@ -30,8 +30,13 @@
         let $receipt_info = $('#receipt_info'),
             $receipts_table = $('#receipts_table');
 
-        search_receipts = () => {
-            $.post("{{ route('receipts.search') }}", {_token, paginate}, (result) => {
+        let selected_page = 1;
+        search_receipts = (page = 1) => {
+            if (page.toString() === '+1') selected_page++;
+            else if (page.toString() === '-1') selected_page--;
+            else selected_page = page;
+
+            $.post("{{ route('receipts.search') }}?page=" + selected_page, {_token, paginate}, (result) => {
                 $receipts_table.html(result);
             }).fail((xhr) => {
                 $receipts_table.html(xhr.responseText);

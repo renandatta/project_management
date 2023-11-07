@@ -17,7 +17,9 @@ class InvoiceRepository extends Repository {
 
     public function search(Request $request)
     {
-        $invoice = $this->invoice->with(['project.client', 'profile']);
+        $invoice = $this->invoice
+            ->with(['project.client', 'profile'])
+            ->orderBy('no_invoice', 'desc');
 
         $project_id = $request->input('project_id') ?? '';
         if ($project_id != '')

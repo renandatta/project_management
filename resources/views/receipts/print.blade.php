@@ -40,14 +40,17 @@
 @section('content')
     <div class="mx-default" style="margin-top: 2cm;margin-bottom: 3cm;">
         <div class="row">
-            <div class="col-6">
-                <h1 id="title">RECEIPT</h1>
+            <div class="col-2">
+                <img src="https://codeepic.id/codeepic.png" alt="" style="width: 100%;height: auto;">
+            </div>
+            <div class="col-4">
+                <h1 id="title" style="font-size: 36pt;">RECEIPT</h1>
                 <div class="row">
                     <div class="col-6 pl-3">
                         <b>#{{ $invoice->no_invoice }}</b>
                     </div>
                     <div class="col-6">
-                        <b>{{ fulldate($invoice->date) }}</b>
+                        <b>{{ fulldate($receipt->date) }}</b>
                     </div>
                 </div>
             </div>
@@ -111,6 +114,8 @@
                 Received by
                 <br>
 {{--                <img src="{{ asset('tanda_tangan.png') }}" alt="" class="img-fluid" style="height: 100px;">--}}
+                <br>
+                <br>
                 <br>
                 <br>
                 <br>
